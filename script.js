@@ -50,18 +50,18 @@ const CONFIG = {
     { q: "Q. 서로의 첫인상은 어땠나요?", a: "친구처럼 편안했고, 함께라면 뭐든 즐거울 것 같았어요." },
   ],
 
-  // --- 타임라인 갤러리 (images/ 폴더에 사진) ---
+  // --- 타임라인 갤러리 (실제 사진 준비되면 t1~t4.jpg 로 교체) ---
   timeline: [
-    { img: "images/t1.jpg", cap: "처음 만난 우리", date: "2021.01.21" },
-    { img: "images/t2.jpg", cap: "설레던 첫 데이트", date: "2022.03.15" },
-    { img: "images/t3.jpg", cap: "함께 떠난 여행", date: "2024.04.17" },
-    { img: "images/t4.jpg", cap: "아름다웠던 그날", date: "2024.04.17" },
+    { img: "images/illust-1.svg", cap: "처음 만난 우리", date: "2021.01.21" },
+    { img: "images/illust-2.svg", cap: "설레던 첫 데이트", date: "2022.03.15" },
+    { img: "images/illust-3.svg", cap: "함께 떠난 여행", date: "2024.04.17" },
+    { img: "images/illust-4.svg", cap: "아름다웠던 그날", date: "2024.04.17" },
   ],
 
-  // 신랑/신부 소개 사진, 메인(hero) 배경 사진
-  groomPhoto: "images/groom.jpg",
-  bridePhoto: "images/bride.jpg",
-  heroImage: "images/main.jpg",
+  // 신랑/신부 소개 사진, 메인(hero) 배경 사진 (실제 사진 준비되면 .jpg 로 교체)
+  groomPhoto: "images/illust-groom.svg",
+  bridePhoto: "images/illust-bride.svg",
+  heroImage: "images/illust-hero.svg",
 
   // --- 마음 전하실 곳 (계좌) ---
   accounts: {

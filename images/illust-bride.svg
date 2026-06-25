@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="300" height="400">
+  <rect width="300" height="400" fill="#efe6d8"/>
+  <circle cx="150" cy="160" r="110" fill="#f6efe2"/>
+  <g transform="translate(150,235)">
+    <!-- 어깨/드레스 -->
+    <path d="M-92 120 Q-80 25 -45 8 L45 8 Q80 25 92 120 Z" fill="#e7d8c2"/>
+    <!-- 가슴선 -->
+    <path d="M-45 8 Q0 34 45 8" stroke="#cdb691" stroke-width="2.5" fill="none"/>
+    <!-- 목 -->
+    <rect x="-15" y="-40" width="30" height="50" rx="13" fill="#f0dcc3"/>
+    <!-- 얼굴 -->
+    <circle cx="0" cy="-78" r="46" fill="#f4e0c8"/>
+    <!-- 머리(웨이브) -->
+    <path d="M-48 -86 Q-50 -140 0 -140 Q50 -140 48 -86 Q56 -40 40 -10 Q44 -70 30 -100 Q40 -116 0 -116 Q-40 -116 -30 -100 Q-44 -70 -40 -10 Q-56 -40 -48 -86 Z" fill="#6b5740"/>
+    <!-- 눈/미소 -->
+    <circle cx="-15" cy="-80" r="3" fill="#5b4a34"/>
+    <circle cx="15" cy="-80" r="3" fill="#5b4a34"/>
+    <path d="M-11 -62 Q0 -55 11 -62" stroke="#c98e86" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <!-- 꽃 장식 -->
+    <circle cx="-34" cy="-104" r="6" fill="#d8a7a0"/>
+    <circle cx="-24" cy="-114" r="5" fill="#e3bcb5"/>
+  </g>
+</svg>

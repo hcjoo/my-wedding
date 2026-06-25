@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <rect width="300" height="300" fill="#efe6d8"/>
+  <circle cx="150" cy="150" r="96" fill="#f6efe2"/>
+  <!-- 여행: 비행기 + 점선 경로 -->
+  <path d="M70 210 q50 -70 150 -120" stroke="#c2a87f" stroke-width="3" fill="none" stroke-dasharray="2 12" stroke-linecap="round"/>
+  <g transform="translate(150,140) rotate(-28)" fill="#b89b73">
+    <path d="M-46 0 L40 -8 q12 -1 16 8 q-4 9 -16 8 L-46 0 Z"/>
+    <path d="M-10 -3 L-30 -34 L-18 -34 L8 -6 Z"/>
+    <path d="M-10 3 L-30 34 L-18 34 L8 6 Z"/>
+    <path d="M34 -4 L44 -16 L52 -14 L46 -2 Z"/>
+  </g>
+  <circle cx="70" cy="210" r="5" fill="#d8a7a0"/>
+</svg>
