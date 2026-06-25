@@ -1,6 +1,13 @@
-이 폴더에 사진을 넣어주세요.
+이 폴더에 사진을 넣어주세요. 파일명은 script.js 의 CONFIG 와 맞춰야 합니다.
 
-- main.jpg  : 메인 대표 사진 (세로 3:4 비율 권장)
-- g1.jpg ~ g6.jpg : 갤러리 사진 (정사각형 권장)
+[메인]
+- main.jpg   : 메인 배경 사진 (세로 9:16, 인물이 화면 중앙~하단에 오도록)
 
-파일명은 script.js 의 CONFIG.gallery / CONFIG.heroImage 와 맞춰주세요.
+[신랑/신부 소개]
+- groom.jpg  : 신랑 사진 (세로 3:4)
+- bride.jpg  : 신부 사진 (세로 3:4)
+
+[타임라인 갤러리]
+- t1.jpg ~ t4.jpg : 추억 사진 (정사각형 권장)
+
+사진을 넣은 뒤 git add . / commit / push 하면 사이트에 반영됩니다.
