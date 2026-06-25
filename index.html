@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>모바일 청첩장</title>
+  <meta name="description" content="저희 두 사람의 결혼식에 초대합니다." />
+
+  <!-- 카카오톡/SNS 공유 미리보기 (Open Graph) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="저희 결혼합니다 💍" />
+  <meta property="og:description" content="소중한 분들을 결혼식에 초대합니다." />
+  <meta property="og:image" content="images/main.jpg" />
+
+  <!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Gowun+Dodum&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="paper">
+
+    <!-- ============ 메인 ============ -->
+    <section id="hero" class="hero reveal">
+      <p class="hero__label">WEDDING INVITATION</p>
+      <div class="hero__photo">
+        <img id="hero-img" src="" alt="신랑 신부 메인 사진" />
+      </div>
+      <h1 class="hero__names">
+        <span id="hero-groom"></span>
+        <span class="hero__amp">그리고</span>
+        <span id="hero-bride"></span>
+      </h1>
+      <p id="hero-date" class="hero__date"></p>
+      <p id="hero-place" class="hero__place"></p>
+    </section>
+
+    <!-- ============ 인사말 ============ -->
+    <section id="greeting" class="section reveal">
+      <p class="section__sub">인사말</p>
+      <h2 class="section__title">소중한 분들을 초대합니다</h2>
+      <p id="greeting-body" class="greeting__body"></p>
+      <div id="greeting-parents" class="greeting__parents"></div>
+    </section>
+
+    <!-- ============ 예식 일시 ============ -->
+    <section id="date" class="section reveal">
+      <p class="section__sub">예식 일시</p>
+      <h2 id="date-title" class="section__title"></h2>
+      <div id="calendar" class="calendar"></div>
+      <div id="countdown" class="countdown"></div>
+    </section>
+
+    <!-- ============ 오시는 길 (지도) ============ -->
+    <section id="location" class="section reveal">
+      <p class="section__sub">오시는 길</p>
+      <h2 id="loc-name" class="section__title"></h2>
+      <p id="loc-addr" class="loc__addr"></p>
+      <p id="loc-detail" class="loc__detail"></p>
+      <div class="map">
+        <iframe id="map-frame" title="예식장 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="map__buttons" id="map-buttons"></div>
+    </section>
+
+    <!-- ============ 갤러리 ============ -->
+    <section id="gallery" class="section reveal">
+      <p class="section__sub">갤러리</p>
+      <h2 class="section__title">우리의 순간들</h2>
+      <div id="gallery-grid" class="gallery"></div>
+    </section>
+
+    <!-- ============ 마음 전하실 곳 ============ -->
+    <section id="account" class="section reveal">
+      <p class="section__sub">마음 전하실 곳</p>
+      <h2 class="section__title">축하의 마음을 전해주세요</h2>
+      <p class="account__guide">참석이 어려우신 분들을 위해 계좌번호를 안내드립니다.</p>
+      <div id="account-list" class="account__list"></div>
+    </section>
+
+    <!-- ============ 방명록 ============ -->
+    <section id="guestbook" class="section reveal">
+      <p class="section__sub">방명록</p>
+      <h2 class="section__title">축하 메시지를 남겨주세요</h2>
+      <form id="guestbook-form" class="gb__form">
+        <input type="text" id="gb-name" class="gb__name" placeholder="이름" maxlength="20" required />
+        <textarea id="gb-msg" class="gb__msg" placeholder="따뜻한 축하 한마디 💌" maxlength="200" required></textarea>
+        <button type="submit" class="gb__submit">메시지 남기기</button>
+      </form>
+      <ul id="guestbook-list" class="gb__list"></ul>
+      <p class="gb__note">* 방명록은 이 기기에만 저장됩니다. (백엔드 연동 시 모두에게 공유 가능)</p>
+    </section>
+
+    <footer class="footer">
+      <p id="footer-names"></p>
+      <p class="footer__thanks">감사합니다 🙏</p>
+    </footer>
+  </main>
+
+  <!-- 이미지 라이트박스 -->
+  <div id="lightbox" class="lightbox" hidden>
+    <button class="lightbox__close" aria-label="닫기">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
