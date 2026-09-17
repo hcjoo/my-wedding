@@ -5,22 +5,18 @@
 const CONFIG = {
   // --- 신랑/신부 ---
   groom: {
-    name: "주아무개", phone: "010-0000-0000",
-    father: "주아무개", mother: "○아무개", order: "장남",   // 3남 중 장남
-    role: "신랑 주아무개",
-    desc: "○○를 좋아하는 신랑\n평생 행복하게 해줄게요 💍",
-  },
+    name: "주환철",
+    father: "주길화", mother: "최순이", order: "장남",   // 3남 중 장남
+    role: "신랑 주환철",  },
   bride: {
-    name: "김아무개", phone: "010-0000-0000",
-    father: "김아무개", mother: "○아무개", order: "장녀",   // 2남매 중 장녀
-    role: "신부 김아무개",
-    desc: "○○를 사랑하는 신부\n늘 곁에서 함께할게요 💕",
-  },
+    name: "김하정",
+    father: "김형진", mother: "허정화", order: "장녀",   // 2남매 중 장녀
+    role: "신부 김하정",  },
 
-  // --- 예식 일시 (24시간제) ---  ※ 예식 시간 미정 → 확인 후 수정
+  // --- 예식 일시 (24시간제) ---
   wedding: {
     year: 2027, month: 1, day: 31,   // 2027.1.31 = 일요일
-    hour: 12, minute: 0,
+    hour: 15, minute: 30,            // 오후 3시 30분
     dateText: "2027년 1월 31일 일요일",
     dateEn: "January 31, 2027",
   },
@@ -50,28 +46,29 @@ const CONFIG = {
     { q: "Q. 서로의 첫인상은 어땠나요?", a: "친구처럼 편안했고, 함께라면 뭐든 즐거울 것 같았어요." },
   ],
 
-  // --- 타임라인 갤러리 (실제 사진 준비되면 t1~t4.jpg 로 교체) ---
+  // --- 함께한 시간 갤러리 (img 를 배열로 주면 한 칸에 나란히 표시) ---
   timeline: [
-    { img: "images/illust-1.svg", cap: "처음 만난 우리", date: "2021.01.21" },
-    { img: "images/illust-2.svg", cap: "설레던 첫 데이트", date: "2022.03.15" },
-    { img: "images/illust-3.svg", cap: "함께 떠난 여행", date: "2024.04.17" },
-    { img: "images/illust-4.svg", cap: "아름다웠던 그날", date: "2024.04.17" },
+    { img: "images/t1.jpg", cap: "기념일 와인 한잔" },
+    { img: "images/t2.jpg", cap: "특별한 날, 특별한 기억" },
+    { img: "images/t3.jpg", cap: "짤랑이와 식빵맨" },
+    { img: ["images/t4-1.jpg", "images/t4-2.jpg"], cap: "씩씩한 커플" },
   ],
 
   // 신랑/신부 소개 사진, 메인(hero) 배경 사진 (실제 사진 준비되면 .jpg 로 교체)
-  groomPhoto: "images/illust-groom.svg",
-  bridePhoto: "images/illust-bride.svg",
-  heroImage: "images/illust-hero.svg",
+  groomPhoto: "images/groom.jpg",
+  bridePhoto: "images/bride.jpg",
+  pet: { name: "루이", role: "보너스", photo: "images/cat.jpg" },
+  heroImage: "images/main.jpg",
 
   // --- 마음 전하실 곳 (계좌) ---
   accounts: {
     groomSide: [
-      { label: "신랑", bank: "○○은행", number: "000-0000-0000", holder: "주아무개" },
-      { label: "신랑 아버지", bank: "○○은행", number: "000-0000-0000", holder: "주아무개" },
+      { label: "신랑", bank: "○○은행", number: "000-0000-0000", holder: "주환철" },
+      { label: "신랑 아버지", bank: "○○은행", number: "000-0000-0000", holder: "주길화" },
     ],
     brideSide: [
-      { label: "신부", bank: "○○은행", number: "000-0000-0000", holder: "김아무개" },
-      { label: "신부 어머니", bank: "○○은행", number: "000-0000-0000", holder: "○아무개" },
+      { label: "신부", bank: "○○은행", number: "000-0000-0000", holder: "김하정" },
+      { label: "신부 어머니", bank: "○○은행", number: "000-0000-0000", holder: "허정화" },
     ],
   },
 };
@@ -92,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTimeline();
   renderLocation();
   renderAccounts();
-  initRsvp();
   initGuestbook();
   initReveal();
   initLightbox();
@@ -100,9 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* ---------- 메인 ---------- */
 function renderHero() {
-  const hero = $("#hero");
-  hero.style.backgroundImage = `url("${CONFIG.heroImage}")`;
-  $("#hero-date-en").textContent = CONFIG.wedding.dateEn;
+  const w = CONFIG.wedding;
+  $("#hero-img").style.backgroundImage = `url("${CONFIG.heroImage}")`;
+  $("#hero-names").innerHTML = `<span>${CONFIG.groom.name}</span><span>${CONFIG.bride.name}</span>`;
+  $("#hero-when").textContent = `${w.dateText} ${formatTime(w.hour, w.minute)}`;
+  $("#hero-venue").textContent = CONFIG.venue.venueLine;
   $("#footer-names").textContent = `${CONFIG.groom.name} · ${CONFIG.bride.name}`;
 }
 
@@ -115,18 +113,19 @@ function renderGreeting() {
     <div class="row"><span class="rel">${g.father} · ${g.mother}</span>의
       <span class="child">${g.order}</span> ${g.name}</div>
     <div class="row"><span class="rel">${b.father} · ${b.mother}</span>의
-      <span class="child">${b.order}</span> ${b.name}</div>`;
-  $("#contact-buttons").innerHTML =
-    `<a href="tel:${g.phone}">신랑에게 연락하기</a>`;
-}
+      <span class="child">${b.order}</span> ${b.name}</div>`;}
 
 /* ---------- 신랑·신부 소개 ---------- */
 function renderProfile() {
   const g = CONFIG.groom, b = CONFIG.bride;
   $("#groom-photo").src = CONFIG.groomPhoto;
   $("#bride-photo").src = CONFIG.bridePhoto;
-  $("#groom-info").innerHTML = `<div class="role">${g.role}</div>${nl2br(g.desc)}`;
-  $("#bride-info").innerHTML = `<div class="role">${b.role}</div>${nl2br(b.desc)}`;
+  $("#groom-info").innerHTML = `<div class="role">${g.role}</div>`;
+  $("#bride-info").innerHTML = `<div class="role">${b.role}</div>`;
+  const p = CONFIG.pet;
+  $("#pet-photo").src = p.photo;
+  $("#pet-photo").alt = `${p.role} ${p.name}`;
+  $("#pet-info").textContent = `${p.role} ${p.name}`;
 }
 
 /* ---------- 달력 ---------- */
@@ -179,14 +178,17 @@ function renderInterview() {
     .join("");
 }
 
-/* ---------- 타임라인 갤러리 ---------- */
+/* ---------- 함께한 시간 갤러리 ---------- */
 function renderTimeline() {
-  $("#timeline-grid").innerHTML = CONFIG.timeline.map((it, i) => `
-    <div class="polaroid" style="--rot:${i % 2 ? 2 : -2}deg">
-      <img src="${it.img}" alt="${escapeHtml(it.cap)}" loading="lazy" />
+  $("#timeline-grid").innerHTML = CONFIG.timeline.map((it) => {
+    const imgs = [].concat(it.img);
+    return `
+    <div class="polaroid">
+      <div class="polaroid__photo">${imgs.map((src) =>
+        `<img src="${src}" alt="${escapeHtml(it.cap)}" loading="lazy" />`).join("")}</div>
       <div class="cap">${escapeHtml(it.cap)}</div>
-      <div class="date">${escapeHtml(it.date)}</div>
-    </div>`).join("");
+    </div>`;
+  }).join("");
 }
 
 /* ---------- 오시는 길 ---------- */
@@ -230,25 +232,6 @@ function renderAccounts() {
       try { await navigator.clipboard.writeText(b.dataset.copy); toast("계좌번호가 복사되었습니다"); }
       catch { toast("복사에 실패했습니다"); }
     }));
-}
-
-/* ---------- RSVP (localStorage) ---------- */
-const RSVP_KEY = "wedding_rsvp";
-function initRsvp() {
-  $("#rsvp-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const side = e.target.side.value;
-    const attend = e.target.attend.value;
-    const name = $("#rsvp-name").value.trim();
-    const count = $("#rsvp-count").value;
-    if (!side || !attend || !name || !count) return;
-    const list = JSON.parse(localStorage.getItem(RSVP_KEY) || "[]");
-    list.push({ side, attend, name, count, date: formatDate(new Date()) });
-    localStorage.setItem(RSVP_KEY, JSON.stringify(list));
-    e.target.reset();
-    $("#rsvp-note").textContent = "참석여부가 전달되었습니다. 감사합니다 🙏";
-    toast("참석여부가 전달되었습니다");
-  });
 }
 
 /* ---------- 방명록 (localStorage) ---------- */
@@ -315,9 +298,9 @@ function initReveal() {
   }, { threshold: 0.12 });
   $$(".reveal").forEach((el) => io.observe(el));
 }
-function nl2br(s) { return escapeHtml(s).replace(/\n/g, "<br/>"); }
 function formatDate(d) { const p = (n) => String(n).padStart(2, "0"); return `${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())}`; }
 function formatDateTime(d) { const p = (n) => String(n).padStart(2, "0"); return `${formatDate(d)} ${p(d.getHours())}:${p(d.getMinutes())}`; }
+function formatTime(h, m) { const ampm = h < 12 ? "오전" : "오후"; const h12 = h % 12 || 12; return `${ampm} ${h12}시${m ? ` ${m}분` : ""}`; }
 function escapeHtml(s) { return s.replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
 let toastTimer;
 function toast(msg) {

@@ -12,41 +12,55 @@
   <meta property="og:description" content="소중한 분들을 결혼식에 초대합니다." />
   <meta property="og:image" content="images/main.jpg" />
 
-  <!-- 폰트: 명조(본문) + 손글씨(영문 타이틀) -->
+  <!-- 폰트: 한글 마루부리(style.css에서 로드) + 영문 손글씨/세리프 -->
+  <link rel="preconnect" href="https://hangeul.pstatic.net" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Gowun+Dodum&family=Parisienne&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Mrs+Saint+Delafield&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- 붓글씨 질감 필터: 붓모 결 따라 긁힌 자국(드라이 브러시) + 가장자리 거칠게 -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="brush-texture" x="-5%" y="-25%" width="110%" height="150%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.006 0.22" numOctaves="3" seed="7" result="streaks" />
+      <feColorMatrix in="streaks" type="matrix"
+        values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -10 0 0 0 7.6" result="mask" />
+      <feComposite in="SourceGraphic" in2="mask" operator="in" result="dry" />
+      <feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2" seed="2" result="warp" />
+      <feDisplacementMap in="dry" in2="warp" scale="1.2" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
+
   <main class="paper">
 
     <!-- ============ 메인(Hero) ============ -->
     <section id="hero" class="hero">
-      <div class="hero__overlay"></div>
-      <div class="hero__inner">
-        <p class="hero__script-top" id="hero-script">We are</p>
-        <p class="hero__script-big">Getting Married</p>
+      <div class="hero__visual">
+        <div class="hero__img" id="hero-img"></div>
+        <p class="hero__script">Wedding</p>
       </div>
-      <div class="hero__bottom">
-        <p id="hero-date-en" class="hero__date-en"></p>
+      <div class="hero__info">
+        <p id="hero-names" class="hero__names"></p>
+        <p id="hero-when" class="hero__when"></p>
+        <p id="hero-venue" class="hero__venue"></p>
       </div>
     </section>
 
     <!-- ============ 인사말 ============ -->
     <section id="greeting" class="section reveal">
+      <p class="section__sub">Invitation</p>
+      <h2 class="section__title">소중한 분들을 초대합니다</h2>
       <p id="greeting-venue" class="greeting__venue"></p>
-      <div class="leaf">❦</div>
-      <p class="eng-italic">Join us to celebrate our wedding</p>
       <p id="greeting-body" class="greeting__body"></p>
       <div class="vline"></div>
-      <div id="greeting-parents" class="greeting__parents"></div>
-      <div class="contact-buttons" id="contact-buttons"></div>
-    </section>
+      <div id="greeting-parents" class="greeting__parents"></div>    </section>
 
     <!-- ============ 신랑·신부 소개 ============ -->
     <section id="profile" class="section reveal">
+      <p class="section__sub">About us</p>
+      <h2 class="section__title">신랑 &amp; 신부</h2>
       <div class="profile">
         <figure class="profile__card">
           <div class="profile__photo"><img id="groom-photo" src="" alt="신랑" /></div>
@@ -57,6 +71,10 @@
           <figcaption id="bride-info"></figcaption>
         </figure>
       </div>
+      <figure class="pet">
+        <div class="pet__photo"><img id="pet-photo" src="" alt="" /></div>
+        <figcaption id="pet-info" class="pet__name"></figcaption>
+      </figure>
     </section>
 
     <!-- ============ WEDDING DAY (달력) ============ -->
@@ -76,8 +94,8 @@
 
     <!-- ============ 타임라인 갤러리 ============ -->
     <section id="timeline" class="section reveal">
-      <p class="section__sub">Timeline</p>
-      <h2 class="section__title">타임라인</h2>
+      <p class="section__sub">Our Time</p>
+      <h2 class="section__title">함께한 시간</h2>
       <div id="timeline-grid" class="timeline"></div>
     </section>
 
@@ -102,37 +120,17 @@
       <div id="account-list" class="account__list"></div>
     </section>
 
-    <!-- ============ 참석여부(RSVP) ============ -->
-    <section id="rsvp" class="section reveal">
-      <p class="section__sub">R.S.V.P</p>
-      <h2 class="section__title">참석여부 전달</h2>
-      <p class="rsvp__guide">축하의 마음으로 참석해 주실<br/>모든 분을 정중히 모시고자 합니다.<br/>참석 여부를 알려주시면 감사하겠습니다.</p>
-      <form id="rsvp-form" class="rsvp__form">
-        <div class="rsvp__row">
-          <label><input type="radio" name="side" value="신랑측" required /> 신랑측</label>
-          <label><input type="radio" name="side" value="신부측" /> 신부측</label>
-        </div>
-        <div class="rsvp__row">
-          <label><input type="radio" name="attend" value="참석" required /> 참석</label>
-          <label><input type="radio" name="attend" value="미참석" /> 미참석</label>
-        </div>
-        <input type="text" id="rsvp-name" placeholder="성함" maxlength="20" required />
-        <input type="number" id="rsvp-count" placeholder="참석 인원 (본인 포함)" min="1" max="20" required />
-        <button type="submit">참석여부 전달하기</button>
-      </form>
-      <p class="rsvp__note" id="rsvp-note"></p>
-    </section>
-
     <!-- ============ 방명록 ============ -->
     <section id="guestbook" class="section reveal">
       <p class="section__sub">Guestbook</p>
       <h2 class="section__title">방명록</h2>
       <ul id="guestbook-list" class="gb__list"></ul>
       <button id="gb-open" class="gb__openbtn">작성하기</button>
-      <p class="gb__note">* 방명록·참석여부는 현재 이 기기에만 저장됩니다. (백엔드 연동 시 모두에게 공유 가능)</p>
+      <p class="gb__note">* 방명록은 현재 이 기기에만 저장됩니다. (백엔드 연동 시 모두에게 공유 가능)</p>
     </section>
 
     <footer class="footer">
+      <p class="footer__script">Thank you</p>
       <p id="footer-names"></p>
       <p class="footer__thanks">감사합니다 🙏</p>
     </footer>
