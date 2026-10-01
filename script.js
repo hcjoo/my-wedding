@@ -1,74 +1,67 @@
 /* =====================================================================
-   ✏️  여기만 수정하면 됩니다 — 실제 결혼식 정보로 바꿔주세요.
-   (공개 사이트이므로 실명 대신 가명/플레이스홀더를 사용 중입니다.)
+   여기만 수정하면 됩니다 — 실제 결혼식 정보로 바꿔주세요.
    ===================================================================== */
 const CONFIG = {
   // --- 신랑/신부 ---
-  groom: {
-    name: "주환철",
-    father: "주길화", mother: "최순이", order: "장남",   // 3남 중 장남
-    role: "신랑 주환철",  },
-  bride: {
-    name: "김하정",
-    father: "김형진", mother: "허정화", order: "장녀",   // 2남매 중 장녀
-    role: "신부 김하정",  },
+  groom: { name: "주환철", father: "주길화", mother: "최순이", order: "장남" },
+  bride: { name: "김하정", father: "김형진", mother: "허정화", order: "장녀" },
 
-  // --- 예식 일시 (24시간제) ---
+  // --- 예식 일시 ---
   wedding: {
     year: 2027, month: 1, day: 31,   // 2027.1.31 = 일요일
     hour: 15, minute: 30,            // 오후 3시 30분
     dateText: "2027년 1월 31일 일요일",
-    dateEn: "January 31, 2027",
+    dateDigits: "2027.01.31",
+    timeEn: "PM 3:30",
   },
 
   // --- 예식 장소 ---
   venue: {
-    name: "아벤티움",
-    venueLine: "아벤티움 웨딩홀",          // 인사말 상단에 표시
-    address: "주소 입력 예정",
-    mapQuery: "아벤티움 웨딩홀",
-    embedQuery: "아벤티움 웨딩홀",
+    name: "아벤티움 웨딩홀",
+    nameEn: "AVENTIUM, SEOUL",
+    address: "서울 중구 청파로 464 브라운스톤서울 3층",
+    phone: "02-313-2480",   // 예식장 대표번호
+    mapQuery: "서울 중구 청파로 464 브라운스톤서울",
+    embedQuery: "서울 중구 청파로 464 브라운스톤서울",
     transport: [
-      { head: "지하철", body: "○○역 ○번 출구 도보 ○분" },
-      { head: "버스", body: "○○ 정류장 하차 (○○, ○○번)" },
-      { head: "자가용", body: "내비게이션에 '아벤티움' 검색\n주차 ○시간 무료" },
+      { head: "지하철", body:
+        "2·5호선 충정로역 4번 출구 — 도보 3분\n출구 방향으로 70m 직진 후 횡단보도 건너편 브라운스톤서울 3층\n\n1·4호선 서울역 15번 출구(공항철도역) — 도보 10분\n'서울역 서부광장' 방향으로 나오신 후 한국경제신문사 방향 이동, 맞은편" },
+      { head: "버스", body:
+        "한국경제신문사 (02516, 02109)\n마을 서대문06 / 간선 370, 603\n지선 7011, 7013A, 7013B, 7017 / 공항 6015\n\n경찰청·동북아역사재단 (13039)\n간선 103, 150, 701, 704, 708, 709, 742, 750A, 750B, 752\n지선 7021, 7024, M7154 / 공항 6005\n\n서울역서부 (02105)\n간선 173, 261, 262, 463, 503, 604 / 지선 7021, 7024\n\n종근당·충정로역 (02107)\n간선 172, 472, 603, N51, N62, N73" },
+      { head: "주차 (내비게이션 검색)", body:
+        "본관주차장 — 브라운스톤서울 (중구 청파로 464)\n별관주차장 — 서소문공원 (중구 칠패로 5)" },
     ],
   },
 
   // --- 인사말 ---
   greeting:
-    "서로 다른 길을 걸어온 두 사람이\n이제 같은 곳을 바라보며 함께 걷고자 합니다.\n저희 두 사람의 새로운 시작을\n귀한 걸음으로 축복해 주시면 감사하겠습니다.",
+    "서로 다른 길을 걸어온 두 사람이\n이제 같은 곳을 바라보며 걷고자 합니다.\n저희의 새로운 시작을\n귀한 걸음으로 축복해 주세요.",
 
-  // --- 인터뷰 ---
-  interview: [
-    { q: "Q. 신혼여행은 어디로 가나요?", a: "고민 끝에 ○○로 결정했어요. 너무 설레요!" },
-    { q: "Q. 첫 데이트는 누가 신청했나요?", a: "사실 처음 보자마자 반했어요. 먼저 마음을 표현해줘서 고마웠어요." },
-    { q: "Q. 서로의 첫인상은 어땠나요?", a: "친구처럼 편안했고, 함께라면 뭐든 즐거울 것 같았어요." },
+  // --- 사진 ---
+  heroImage: "images/hero.jpg",                    // 첫 화면
+  galleryFeature: "images/gallery/g21.jpg",        // 갤러리 큰 사진
+  gallery: [                                       // 격자 (중복 없이 나머지 전부)
+    "images/gallery/g01.jpg", "images/gallery/g02.jpg", "images/gallery/g03.jpg",
+    "images/gallery/g05.jpg", "images/gallery/g06.jpg", "images/gallery/g07.jpg",
+    "images/gallery/g08.jpg", "images/gallery/g09.jpg", "images/gallery/g10.jpg",
+    "images/gallery/g11.jpg", "images/gallery/g12.jpg", "images/gallery/g13.jpg",
+    "images/gallery/g14.jpg", "images/gallery/g15.jpg", "images/gallery/g16.jpg",
+    "images/gallery/g17.jpg", "images/gallery/g18.jpg", "images/gallery/g19.jpg",
+    "images/gallery/g20.jpg", "images/gallery/g22.jpg",
   ],
 
-  // --- 함께한 시간 갤러리 (img 를 배열로 주면 한 칸에 나란히 표시) ---
-  timeline: [
-    { img: "images/t1.jpg", cap: "기념일 와인 한잔" },
-    { img: "images/t2.jpg", cap: "특별한 날, 특별한 기억" },
-    { img: "images/t3.jpg", cap: "짤랑이와 식빵맨" },
-    { img: ["images/t4-1.jpg", "images/t4-2.jpg"], cap: "씩씩한 커플" },
-  ],
-
-  // 신랑/신부 소개 사진, 메인(hero) 배경 사진 (실제 사진 준비되면 .jpg 로 교체)
-  groomPhoto: "images/groom.jpg",
-  bridePhoto: "images/bride.jpg",
-  pet: { name: "루이", role: "보너스", photo: "images/cat.jpg" },
-  heroImage: "images/main.jpg",
+  // --- 축하 메시지 저장 위치 ---
+  // 구글 시트 Apps Script 웹 앱 URL (guestbook-apps-script.gs 참고)
+  // 비워두면 메시지가 각자 기기에만 저장됩니다.
+  guestbookApi: "https://script.google.com/macros/s/AKfycbyUQyKpKiZkmkLNcMFrXy00nfIk-_S231r3d6R2WHzpGbLAGNbYTdMvt4fKBCHr7M5l/exec",
 
   // --- 마음 전하실 곳 (계좌) ---
   accounts: {
     groomSide: [
-      { label: "신랑", bank: "○○은행", number: "000-0000-0000", holder: "주환철" },
-      { label: "신랑 아버지", bank: "○○은행", number: "000-0000-0000", holder: "주길화" },
+      { label: "신랑", bank: "신한은행", number: "110-472-002396", holder: "주환철" },
     ],
     brideSide: [
-      { label: "신부", bank: "○○은행", number: "000-0000-0000", holder: "김하정" },
-      { label: "신부 어머니", bank: "○○은행", number: "000-0000-0000", holder: "허정화" },
+      { label: "신부", bank: "카카오뱅크", number: "3333-04-2972062", holder: "김하정" },
     ],
   },
 };
@@ -82,11 +75,10 @@ const $$ = (s) => document.querySelectorAll(s);
 document.addEventListener("DOMContentLoaded", () => {
   renderHero();
   renderGreeting();
-  renderProfile();
+  renderGallery();
+  renderDate();
   renderCalendar();
   renderCountdown();
-  renderInterview();
-  renderTimeline();
   renderLocation();
   renderAccounts();
   initGuestbook();
@@ -96,42 +88,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* ---------- 메인 ---------- */
 function renderHero() {
-  const w = CONFIG.wedding;
-  $("#hero-img").style.backgroundImage = `url("${CONFIG.heroImage}")`;
-  $("#hero-names").innerHTML = `<span>${CONFIG.groom.name}</span><span>${CONFIG.bride.name}</span>`;
-  $("#hero-when").textContent = `${w.dateText} ${formatTime(w.hour, w.minute)}`;
-  $("#hero-venue").textContent = CONFIG.venue.venueLine;
+  const w = CONFIG.wedding, v = CONFIG.venue;
+  $("#hero-img").src = CONFIG.heroImage;
+  $("#hero-venue-en").textContent = v.nameEn;
+  $("#hero-time-en").textContent = w.timeEn;
+  $("#hero-date").textContent = w.dateDigits;
+  $("#hero-names").textContent = `${CONFIG.groom.name} · ${CONFIG.bride.name}`;
+  $("#hero-place").textContent = v.name;
+  $("#footer-date").textContent = `${w.dateText} ${formatTime(w.hour, w.minute)}`;
   $("#footer-names").textContent = `${CONFIG.groom.name} · ${CONFIG.bride.name}`;
 }
 
 /* ---------- 인사말 ---------- */
 function renderGreeting() {
   const g = CONFIG.groom, b = CONFIG.bride;
-  $("#greeting-venue").innerHTML = `${CONFIG.wedding.dateText}<br/>${CONFIG.venue.venueLine}`;
   $("#greeting-body").textContent = CONFIG.greeting;
-  $("#greeting-parents").innerHTML = `
-    <div class="row"><span class="rel">${g.father} · ${g.mother}</span>의
-      <span class="child">${g.order}</span> ${g.name}</div>
-    <div class="row"><span class="rel">${b.father} · ${b.mother}</span>의
-      <span class="child">${b.order}</span> ${b.name}</div>`;}
-
-/* ---------- 신랑·신부 소개 ---------- */
-function renderProfile() {
-  const g = CONFIG.groom, b = CONFIG.bride;
-  $("#groom-photo").src = CONFIG.groomPhoto;
-  $("#bride-photo").src = CONFIG.bridePhoto;
-  $("#groom-info").innerHTML = `<div class="role">${g.role}</div>`;
-  $("#bride-info").innerHTML = `<div class="role">${b.role}</div>`;
-  const p = CONFIG.pet;
-  $("#pet-photo").src = p.photo;
-  $("#pet-photo").alt = `${p.role} ${p.name}`;
-  $("#pet-info").textContent = `${p.role} ${p.name}`;
+  $("#greeting-parents").innerHTML =
+    `<div>${g.father} · ${g.mother}의 ${g.order} <b>${g.name}</b></div>
+     <div>${b.father} · ${b.mother}의 ${b.order} <b>${b.name}</b></div>`;
 }
 
-/* ---------- 달력 ---------- */
+/* ---------- 갤러리 ---------- */
+function renderGallery() {
+  $("#gallery-feature").src = CONFIG.galleryFeature;
+  $("#gallery-grid").innerHTML = CONFIG.gallery
+    .map((src, i) => `<img src="${src}" alt="웨딩 사진 ${i + 2}" loading="lazy" />`)
+    .join("");
+}
+
+/* ---------- 예식 안내 ---------- */
+function renderDate() {
+  const w = CONFIG.wedding;
+  $("#date-big").textContent = w.dateDigits;
+  $("#date-sub").textContent = `${w.dateText} ${formatTime(w.hour, w.minute)} · ${CONFIG.venue.name}`;
+}
+
 function renderCalendar() {
-  const { year, month, day, dateText } = CONFIG.wedding;
-  $("#date-title").textContent = dateText;
+  const { year, month, day } = CONFIG.wedding;
   const first = new Date(year, month - 1, 1).getDay();
   const days = new Date(year, month, 0).getDate();
   const week = ["일", "월", "화", "수", "목", "금", "토"];
@@ -151,51 +144,31 @@ function renderCalendar() {
   $("#calendar").innerHTML = html;
 }
 
-/* ---------- 카운트다운 ---------- */
 function renderCountdown() {
   const w = CONFIG.wedding;
   const target = new Date(w.year, w.month - 1, w.day, w.hour, w.minute);
   const box = $("#countdown");
   function tick() {
     const diff = target - new Date();
-    if (diff <= 0) { box.innerHTML = `<p class="msg">🎉 오늘은 저희의 결혼식입니다!</p>`; return; }
+    if (diff <= 0) { box.innerHTML = `<p class="msg">오늘은 저희의 결혼식입니다</p>`; return; }
     const d = Math.floor(diff / 86400000);
     const h = Math.floor((diff % 86400000) / 3600000);
     const m = Math.floor((diff % 3600000) / 60000);
     const s = Math.floor((diff % 60000) / 1000);
     const cell = (n, l) => `<div class="cd"><div class="num">${n}</div><div class="lbl">${l}</div></div>`;
     box.innerHTML = cell(d, "DAYS") + cell(h, "HOUR") + cell(m, "MIN") + cell(s, "SEC")
-      + `<p class="msg">${CONFIG.groom.name} ❤ ${CONFIG.bride.name}의 결혼식이 <b>${d}일</b> 남았습니다.</p>`;
+      + `<p class="msg">예식까지 ${d}일 남았습니다</p>`;
   }
   tick();
   setInterval(tick, 1000);
 }
 
-/* ---------- 인터뷰 ---------- */
-function renderInterview() {
-  $("#interview-list").innerHTML = CONFIG.interview
-    .map((it) => `<div><div class="q">${it.q}</div><div class="a">${escapeHtml(it.a)}</div></div>`)
-    .join("");
-}
-
-/* ---------- 함께한 시간 갤러리 ---------- */
-function renderTimeline() {
-  $("#timeline-grid").innerHTML = CONFIG.timeline.map((it) => {
-    const imgs = [].concat(it.img);
-    return `
-    <div class="polaroid">
-      <div class="polaroid__photo">${imgs.map((src) =>
-        `<img src="${src}" alt="${escapeHtml(it.cap)}" loading="lazy" />`).join("")}</div>
-      <div class="cap">${escapeHtml(it.cap)}</div>
-    </div>`;
-  }).join("");
-}
-
 /* ---------- 오시는 길 ---------- */
 function renderLocation() {
   const v = CONFIG.venue;
-  $("#loc-addr").textContent = v.address;
   $("#loc-name").textContent = v.name;
+  $("#loc-addr").textContent = v.address;
+  $("#loc-tel").innerHTML = `예식장 문의 <a href="tel:${v.phone}">${v.phone}</a>`;
   $("#map-frame").src = `https://www.google.com/maps?q=${encodeURIComponent(v.embedQuery)}&output=embed`;
   const q = encodeURIComponent(v.mapQuery);
   $("#map-buttons").innerHTML = `
@@ -234,78 +207,145 @@ function renderAccounts() {
     }));
 }
 
-/* ---------- 방명록 (localStorage) ---------- */
+/* ---------- 축하 메시지 ----------
+   CONFIG.guestbookApi 가 있으면 구글 시트에, 없으면 이 기기에 저장합니다. */
 const GB_KEY = "wedding_guestbook";
+const useSheet = () => !!CONFIG.guestbookApi;
+
 function initGuestbook() {
   const modal = $("#gb-modal");
   $("#gb-open").addEventListener("click", () => { modal.hidden = false; });
   $("#gb-modal .modal__close").addEventListener("click", () => { modal.hidden = true; });
   modal.addEventListener("click", (e) => { if (e.target === modal) modal.hidden = true; });
 
-  $("#guestbook-form").addEventListener("submit", (e) => {
+  $("#guestbook-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const name = $("#gb-name").value.trim();
     const msg = $("#gb-msg").value.trim();
     if (!name || !msg) return;
-    const list = loadGB();
-    list.unshift({ id: Date.now(), name, msg, date: formatDateTime(new Date()) });
-    saveGB(list);
-    $("#gb-name").value = ""; $("#gb-msg").value = "";
-    modal.hidden = true;
-    renderGB();
-    toast("축하 메시지가 등록되었습니다 💌");
+    const btn = e.target.querySelector("button[type=submit]");
+    btn.disabled = true;
+
+    try {
+      if (useSheet()) {
+        await fetch(CONFIG.guestbookApi, {
+          method: "POST",
+          // 미리 확인 요청(preflight)이 생기지 않도록 text/plain 으로 보냅니다.
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ name, msg }),
+        });
+      } else {
+        const list = loadLocal();
+        list.unshift({ id: Date.now(), name, msg, date: formatDate(new Date()) });
+        saveLocal(list);
+      }
+      $("#gb-name").value = ""; $("#gb-msg").value = "";
+      modal.hidden = true;
+      toast("축하 메시지가 등록되었습니다");
+      renderGB();
+    } catch {
+      toast("등록에 실패했습니다. 잠시 후 다시 시도해 주세요");
+    } finally {
+      btn.disabled = false;
+    }
   });
+
   renderGB();
 }
-function loadGB() { try { return JSON.parse(localStorage.getItem(GB_KEY)) || []; } catch { return []; } }
-function saveGB(list) { localStorage.setItem(GB_KEY, JSON.stringify(list)); }
-function renderGB() {
-  const list = loadGB();
+
+function loadLocal() { try { return JSON.parse(localStorage.getItem(GB_KEY)) || []; } catch { return []; } }
+function saveLocal(list) { localStorage.setItem(GB_KEY, JSON.stringify(list)); }
+
+async function renderGB() {
+  const box = $("#guestbook-list");
+  let list = [];
+  if (useSheet()) {
+    box.innerHTML = `<li class="gb__item"><div class="text">불러오는 중...</div></li>`;
+    try {
+      const res = await fetch(CONFIG.guestbookApi);
+      const data = await res.json();
+      list = data.list || [];
+    } catch {
+      box.innerHTML = `<li class="gb__item"><div class="text">메시지를 불러오지 못했습니다.</div></li>`;
+      return;
+    }
+  } else {
+    list = loadLocal();
+  }
+
   if (!list.length) {
-    $("#guestbook-list").innerHTML =
-      `<li class="gb__item"><div class="text">아직 메시지가 없어요. 첫 번째 축하를 남겨주세요!</div></li>`;
+    box.innerHTML = `<li class="gb__item"><div class="text">아직 메시지가 없어요. 첫 번째 축하를 남겨주세요.</div></li>`;
     return;
   }
-  $("#guestbook-list").innerHTML = list.map((it) => `
+  box.innerHTML = list.map((it) => `
     <li class="gb__item">
-      <button class="del" data-id="${it.id}" aria-label="삭제">&times;</button>
-      <span class="name">${escapeHtml(it.name)}</span><span class="date">${it.date}</span>
+      ${useSheet() ? "" : `<button class="del" data-id="${it.id}" aria-label="삭제">&times;</button>`}
+      <span class="name">${escapeHtml(it.name)}</span><span class="date">${escapeHtml(it.date || "")}</span>
       <div class="text">${escapeHtml(it.msg)}</div>
     </li>`).join("");
-  $$("#guestbook-list .del").forEach((b) =>
-    b.addEventListener("click", () => {
-      if (!confirm("이 메시지를 삭제할까요?")) return;
-      saveGB(loadGB().filter((x) => x.id != b.dataset.id));
-      renderGB();
-    }));
+
+  if (!useSheet()) {
+    $$("#guestbook-list .del").forEach((b) =>
+      b.addEventListener("click", () => {
+        if (!confirm("이 메시지를 삭제할까요?")) return;
+        saveLocal(loadLocal().filter((x) => x.id != b.dataset.id));
+        renderGB();
+      }));
+  }
 }
 
-/* ---------- 라이트박스 ---------- */
+/* ---------- 사진 크게 보기 ---------- */
 function initLightbox() {
-  const box = $("#lightbox"), img = $("#lightbox-img");
-  $("#timeline-grid").addEventListener("click", (e) => {
-    if (e.target.tagName === "IMG") { img.src = e.target.src; box.hidden = false; }
-  });
+  const box = $("#lightbox"), img = $("#lightbox-img"), count = $("#lightbox-count");
+  const photos = [CONFIG.galleryFeature, ...CONFIG.gallery];
+  let idx = 0;
+
+  const show = (i) => {
+    idx = (i + photos.length) % photos.length;
+    img.src = photos[idx];
+    count.textContent = `${idx + 1} / ${photos.length}`;
+  };
+  const open = (src) => { show(photos.indexOf(src)); box.hidden = false; };
   const close = () => { box.hidden = true; img.src = ""; };
+
+  $("#gallery").addEventListener("click", (e) => {
+    if (e.target.tagName === "IMG") open(e.target.getAttribute("src"));
+  });
   $(".lightbox__close").addEventListener("click", close);
+  $(".lightbox__nav--prev").addEventListener("click", () => show(idx - 1));
+  $(".lightbox__nav--next").addEventListener("click", () => show(idx + 1));
   box.addEventListener("click", (e) => { if (e.target === box) close(); });
+  document.addEventListener("keydown", (e) => {
+    if (box.hidden) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(idx - 1);
+    if (e.key === "ArrowRight") show(idx + 1);
+  });
+  // 좌우로 밀어 넘기기
+  let x0 = null;
+  box.addEventListener("touchstart", (e) => { x0 = e.changedTouches[0].clientX; }, { passive: true });
+  box.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) show(dx < 0 ? idx + 1 : idx - 1);
+    x0 = null;
+  }, { passive: true });
 }
 
 /* ---------- 유틸 ---------- */
 function initReveal() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach((en) => { if (en.isIntersecting) en.target.classList.add("is-visible"); });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.08 });
   $$(".reveal").forEach((el) => io.observe(el));
 }
+function toast(msg) {
+  const el = document.createElement("div");
+  el.className = "toast"; el.textContent = msg;
+  document.body.appendChild(el);
+  requestAnimationFrame(() => el.classList.add("show"));
+  setTimeout(() => { el.classList.remove("show"); setTimeout(() => el.remove(), 300); }, 1800);
+}
 function formatDate(d) { const p = (n) => String(n).padStart(2, "0"); return `${d.getFullYear()}.${p(d.getMonth()+1)}.${p(d.getDate())}`; }
-function formatDateTime(d) { const p = (n) => String(n).padStart(2, "0"); return `${formatDate(d)} ${p(d.getHours())}:${p(d.getMinutes())}`; }
 function formatTime(h, m) { const ampm = h < 12 ? "오전" : "오후"; const h12 = h % 12 || 12; return `${ampm} ${h12}시${m ? ` ${m}분` : ""}`; }
 function escapeHtml(s) { return s.replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
-let toastTimer;
-function toast(msg) {
-  let el = $(".toast");
-  if (!el) { el = document.createElement("div"); el.className = "toast"; document.body.appendChild(el); }
-  el.textContent = msg; el.classList.add("show");
-  clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove("show"), 1800);
-}
