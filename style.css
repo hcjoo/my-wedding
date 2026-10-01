@@ -72,7 +72,7 @@ img { display: block; }
 
 /* ===== 예식 안내 ===== */
 .date__big { font-size: 40px; font-weight: 200; letter-spacing: -.02em; line-height: 1.1; }
-.date__sub { margin-top: 10px; font-size: 14px; color: var(--ink-soft); }
+.date__when { font-size: 16px; font-weight: 400; letter-spacing: 0; color: var(--ink-soft); margin-left: 8px; white-space: nowrap; }
 .calendar { margin-top: 32px; border-top: 1px solid var(--ink); padding-top: 18px; }
 .calendar table { width: 100%; border-collapse: collapse; }
 .calendar th { font-size: 11px; font-weight: 500; color: var(--muted); padding-bottom: 12px; }

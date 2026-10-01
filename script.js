@@ -119,8 +119,9 @@ function renderGallery() {
 /* ---------- 예식 안내 ---------- */
 function renderDate() {
   const w = CONFIG.wedding;
-  $("#date-big").textContent = w.dateDigits;
-  $("#date-sub").textContent = `${w.dateText} ${formatTime(w.hour, w.minute)} · ${CONFIG.venue.name}`;
+  const dow = ["일","월","화","수","목","금","토"][new Date(w.year, w.month - 1, w.day).getDay()];
+  $("#date-big").innerHTML =
+    `${w.dateDigits} <span class="date__when">(${dow}) ${formatTime(w.hour, w.minute)}</span>`;
 }
 
 function renderCalendar() {
