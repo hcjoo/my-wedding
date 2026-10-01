@@ -308,8 +308,19 @@ function initLightbox() {
   const open = (src) => { show(photos.indexOf(src)); box.hidden = false; };
   const close = () => { box.hidden = true; img.src = ""; };
 
-  $("#gallery").addEventListener("click", (e) => {
-    if (e.target.tagName === "IMG") open(e.target.getAttribute("src"));
+  // 스크롤하려고 사진 위에서 손가락을 움직인 경우에는 열지 않는다
+  const gallery = $("#gallery");
+  let press = null;
+  gallery.addEventListener("pointerdown", (e) => {
+    press = { x: e.clientX, y: e.clientY, t: Date.now() };
+  }, { passive: true });
+  gallery.addEventListener("click", (e) => {
+    if (e.target.tagName !== "IMG") return;
+    if (press) {
+      const moved = Math.hypot(e.clientX - press.x, e.clientY - press.y);
+      if (moved > 10 || Date.now() - press.t > 600) return;   // 끌었거나 길게 누름 → 무시
+    }
+    open(e.target.getAttribute("src"));
   });
   $(".lightbox__close").addEventListener("click", close);
   $(".lightbox__nav--prev").addEventListener("click", () => show(idx - 1));
