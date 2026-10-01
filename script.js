@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function renderHero() {
   const w = CONFIG.wedding;
   $("#hero-img").src = CONFIG.heroImage;
-  $("#hero-when").textContent = w.dateDigits;
+  $("#hero-when").textContent = w.dateDigits.replace(/\./g, " . ");
   $("#footer-date").textContent = `${w.dateText} ${formatTime(w.hour, w.minute)}`;
   $("#footer-names").textContent = `${CONFIG.groom.name} · ${CONFIG.bride.name}`;
 }
@@ -306,17 +306,29 @@ function initLightbox() {
   const close = () => { box.hidden = true; img.src = ""; };
 
   // 스크롤하려고 사진 위에서 손가락을 움직인 경우에는 열지 않는다
+  // (카카오톡 등 인앱 브라우저를 위해 터치 이벤트도 함께 본다)
   const gallery = $("#gallery");
-  let press = null;
-  gallery.addEventListener("pointerdown", (e) => {
-    press = { x: e.clientX, y: e.clientY, t: Date.now() };
+  let press = null, dragged = false;
+  const start = (x, y) => { press = { x, y, t: Date.now() }; dragged = false; };
+  const move = (x, y) => {
+    if (!press) return;
+    if (Math.hypot(x - press.x, y - press.y) > 10) dragged = true;
+  };
+  gallery.addEventListener("pointerdown", (e) => start(e.clientX, e.clientY), { passive: true });
+  gallery.addEventListener("pointermove", (e) => move(e.clientX, e.clientY), { passive: true });
+  gallery.addEventListener("touchstart", (e) => {
+    const t = e.changedTouches[0];
+    start(t.clientX, t.clientY);
   }, { passive: true });
+  gallery.addEventListener("touchmove", (e) => {
+    const t = e.changedTouches[0];
+    move(t.clientX, t.clientY);
+  }, { passive: true });
+
   gallery.addEventListener("click", (e) => {
     if (e.target.tagName !== "IMG") return;
-    if (press) {
-      const moved = Math.hypot(e.clientX - press.x, e.clientY - press.y);
-      if (moved > 10 || Date.now() - press.t > 600) return;   // 끌었거나 길게 누름 → 무시
-    }
+    if (dragged) return;                                        // 끌었으면 무시
+    if (press && Date.now() - press.t > 600) return;            // 길게 눌렀으면 무시
     open(e.target.getAttribute("src"));
   });
   $(".lightbox__close").addEventListener("click", close);

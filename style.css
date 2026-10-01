@@ -42,7 +42,7 @@ img { display: block; }
 }
 .hero__script { font-family: var(--script); font-size: 26px; line-height: 1.5;
   text-transform: uppercase; letter-spacing: .18em; }
-.hero__when { font-family: var(--script); margin-top: 14px; font-size: 15px; letter-spacing: .2em; opacity: .9; }
+.hero__when { margin-top: 14px; font-size: 14px; font-weight: 300; letter-spacing: .12em; opacity: .92; }
 
 /* ===== 인사말 (검정 블록) ===== */
 .band { background: var(--ink); color: #fff; padding: 72px var(--pad); text-align: center; }
@@ -63,9 +63,11 @@ img { display: block; }
 /* ===== 갤러리 ===== */
 #gallery { padding-left: 0; padding-right: 0; }
 #gallery .sec__head { padding: 0 var(--pad); }
-.gallery__feature { width: 100%; aspect-ratio: 4/3; object-fit: cover; cursor: pointer; background: var(--soft); }
+.gallery__feature { width: 100%; aspect-ratio: 4/3; object-fit: cover; cursor: pointer; background: var(--soft);
+  touch-action: manipulation; }   /* 더블탭 확대 방지 */
 .gallery__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 2px; }
-.gallery__grid img { width: 100%; aspect-ratio: 1; object-fit: cover; cursor: pointer; background: var(--soft); }
+.gallery__grid img { width: 100%; aspect-ratio: 1; object-fit: cover; cursor: pointer; background: var(--soft);
+  touch-action: manipulation; }
 
 /* ===== 예식 안내 ===== */
 .date__big { font-size: 40px; font-weight: 200; letter-spacing: -.02em; line-height: 1.1; }
