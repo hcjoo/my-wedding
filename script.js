@@ -41,13 +41,13 @@ const CONFIG = {
   heroImage: "images/hero.jpg",                    // 첫 화면
   galleryFeature: "images/gallery/g21.jpg",        // 갤러리 큰 사진
   gallery: [                                       // 격자 (중복 없이 나머지 전부)
-    "images/gallery/g01.jpg", "images/gallery/g02.jpg", "images/gallery/g03.jpg",
+    "images/gallery/g01.jpg", "images/gallery/g02.jpg", "images/gallery/g03.jpg", "images/gallery/g04.jpg",
     "images/gallery/g05.jpg", "images/gallery/g06.jpg", "images/gallery/g07.jpg",
     "images/gallery/g08.jpg", "images/gallery/g09.jpg", "images/gallery/g10.jpg",
     "images/gallery/g11.jpg", "images/gallery/g12.jpg", "images/gallery/g13.jpg",
     "images/gallery/g14.jpg", "images/gallery/g15.jpg", "images/gallery/g16.jpg",
     "images/gallery/g17.jpg", "images/gallery/g18.jpg", "images/gallery/g19.jpg",
-    "images/gallery/g20.jpg", "images/gallery/g22.jpg",
+    "images/gallery/g20.jpg",
   ],
 
   // --- 축하 메시지 저장 위치 ---
@@ -88,13 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* ---------- 메인 ---------- */
 function renderHero() {
-  const w = CONFIG.wedding, v = CONFIG.venue;
+  const w = CONFIG.wedding;
   $("#hero-img").src = CONFIG.heroImage;
-  $("#hero-venue-en").textContent = v.nameEn;
-  $("#hero-time-en").textContent = w.timeEn;
-  $("#hero-date").textContent = w.dateDigits;
-  $("#hero-names").textContent = `${CONFIG.groom.name} · ${CONFIG.bride.name}`;
-  $("#hero-place").textContent = v.name;
+  $("#hero-when").textContent = w.dateDigits;
   $("#footer-date").textContent = `${w.dateText} ${formatTime(w.hour, w.minute)}`;
   $("#footer-names").textContent = `${CONFIG.groom.name} · ${CONFIG.bride.name}`;
 }
