@@ -1,0 +1,59 @@
+name: Deploy Pages
+
+# main  → https://hcjoo.github.io/my-wedding/          (실제 청첩장)
+# dev   → https://hcjoo.github.io/my-wedding/preview/  (작업 중 미리보기)
+on:
+  push:
+    branches: [main, dev]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: main 체크아웃
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site
+
+      - name: dev 체크아웃 (없으면 건너뜀)
+        id: dev
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+          path: dev
+
+      - name: 사이트 구성
+        run: |
+          rm -rf site/.git site/.github
+          if [ -d dev ]; then
+            mkdir -p site/preview
+            rsync -a --exclude='.git' --exclude='.github' dev/ site/preview/
+          fi
+          # 미리보기는 검색에 걸리지 않도록
+          printf 'User-agent: *\nDisallow: /preview/\n' > site/robots.txt
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
