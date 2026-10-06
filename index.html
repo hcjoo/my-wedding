@@ -12,11 +12,11 @@
   <meta property="og:description" content="2027년 1월 31일 일요일 오후 3시 30분, 아벤티움 웨딩홀" />
   <meta property="og:image" content="images/hero.jpg" />
 
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -24,39 +24,41 @@
 
     <!-- ============ 메인 ============ -->
     <section class="hero">
-      <img class="hero__img" id="hero-img" src="" alt="" />
-      <div class="hero__cap">
-        <p class="hero__script">We are<br/>Getting Married</p>
-        <p class="hero__when" id="hero-when"></p>
-      </div>
+      <p class="hero__names" id="hero-names"></p>
+      <div class="hero__photo"><img id="hero-img" src="" alt="" /></div>
+      <p class="hero__lead">결혼합니다</p>
+      <p class="hero__when" id="hero-when"></p>
     </section>
 
     <!-- ============ 인사말 ============ -->
     <section class="band reveal">
       <p class="band__en">INVITATION</p>
+      <h2 class="band__ko">모시는 글</h2>
       <p class="band__msg" id="greeting-body"></p>
       <div class="band__line"></div>
       <div class="band__parents" id="greeting-parents"></div>
     </section>
 
+    <!-- ============ 예식 안내 ============ -->
+    <section id="date" class="sec reveal">
+      <p class="sec__en">WEDDING DAY</p>
+      <h2 class="sec__ko">예식 안내</h2>
+      <p class="date__big" id="date-big"></p>
+      <p class="date__place" id="date-place"></p>
+    </section>
+
     <!-- ============ 갤러리 ============ -->
     <section id="gallery" class="sec reveal">
-      <div class="sec__head"><span class="sec__num">01</span><span class="sec__ko">신랑과 신부</span></div>
+      <p class="sec__en">GALLERY</p>
+      <h2 class="sec__ko">신랑과 신부</h2>
       <img class="gallery__feature" id="gallery-feature" src="" alt="" />
       <div class="gallery__grid" id="gallery-grid"></div>
     </section>
 
-    <!-- ============ 예식 안내 ============ -->
-    <section id="date" class="sec reveal">
-      <div class="sec__head"><span class="sec__num">02</span><span class="sec__ko">예식 안내</span></div>
-      <p class="date__big" id="date-big"></p>
-      <div id="calendar" class="calendar"></div>
-      <div id="countdown" class="countdown"></div>
-    </section>
-
     <!-- ============ 오시는 길 ============ -->
     <section id="location" class="sec reveal">
-      <div class="sec__head"><span class="sec__num">03</span><span class="sec__ko">오시는 길</span></div>
+      <p class="sec__en">LOCATION</p>
+      <h2 class="sec__ko">오시는 길</h2>
       <p class="loc__name" id="loc-name"></p>
       <p class="loc__addr" id="loc-addr"></p>
       <p class="loc__tel" id="loc-tel"></p>
@@ -69,14 +71,16 @@
 
     <!-- ============ 마음 전하실 곳 ============ -->
     <section id="account" class="sec reveal">
-      <div class="sec__head"><span class="sec__num">04</span><span class="sec__ko">마음 전하실 곳</span></div>
+      <p class="sec__en">HEART</p>
+      <h2 class="sec__ko">마음 전하실 곳</h2>
       <p class="sec__guide">참석이 어려우신 분들을 위해 계좌번호를 안내드립니다.</p>
       <div id="account-list" class="account"></div>
     </section>
 
     <!-- ============ 방명록 ============ -->
     <section id="guestbook" class="sec reveal">
-      <div class="sec__head"><span class="sec__num">05</span><span class="sec__ko">축하 메시지</span></div>
+      <p class="sec__en">GUESTBOOK</p>
+      <h2 class="sec__ko">축하 메시지</h2>
       <ul id="guestbook-list" class="gb__list"></ul>
       <button id="gb-open" class="btn">메시지 남기기</button>
     </section>

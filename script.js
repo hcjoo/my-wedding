@@ -46,7 +46,7 @@ const CONFIG = {
     "images/gallery/g08.jpg", "images/gallery/g09.jpg", "images/gallery/g10.jpg",
     "images/gallery/g11.jpg", "images/gallery/g12.jpg", "images/gallery/g13.jpg",
     "images/gallery/g14.jpg", "images/gallery/g15.jpg", "images/gallery/g16.jpg",
-    "images/gallery/g17.jpg", "images/gallery/g18.jpg", "images/gallery/g19.jpg",
+    "images/gallery/g17.jpg", "images/gallery/g18.jpg", "images/gallery/g22.jpg",
     "images/gallery/g20.jpg",
   ],
 
@@ -77,8 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderGreeting();
   renderGallery();
   renderDate();
-  renderCalendar();
-  renderCountdown();
   renderLocation();
   renderAccounts();
   initGuestbook();
@@ -90,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function renderHero() {
   const w = CONFIG.wedding;
   $("#hero-img").src = CONFIG.heroImage;
+  $("#hero-names").innerHTML = `<span>${CONFIG.groom.name}</span><span>${CONFIG.bride.name}</span>`;
   $("#hero-when").textContent = w.dateDigits.replace(/\./g, " . ");
   $("#footer-date").textContent = `${w.dateText} ${formatTime(w.hour, w.minute)}`;
   $("#footer-names").textContent = `${CONFIG.groom.name} · ${CONFIG.bride.name}`;
@@ -118,46 +117,7 @@ function renderDate() {
   const dow = ["일","월","화","수","목","금","토"][new Date(w.year, w.month - 1, w.day).getDay()];
   $("#date-big").innerHTML =
     `${w.dateDigits} <span class="date__when">(${dow}) ${formatTime(w.hour, w.minute)}</span>`;
-}
-
-function renderCalendar() {
-  const { year, month, day } = CONFIG.wedding;
-  const first = new Date(year, month - 1, 1).getDay();
-  const days = new Date(year, month, 0).getDate();
-  const week = ["일", "월", "화", "수", "목", "금", "토"];
-
-  let html = "<table><thead><tr>";
-  week.forEach((w, i) => html += `<th class="${i === 0 ? "sun" : ""}">${w}</th>`);
-  html += "</tr></thead><tbody><tr>";
-  for (let i = 0; i < first; i++) html += "<td></td>";
-  for (let d = 1; d <= days; d++) {
-    const col = (first + d - 1) % 7;
-    const isWed = d === day;
-    const cls = isWed ? "today" : (col === 0 ? "sun" : "");
-    html += `<td class="${cls}">${isWed ? `<span>${d}</span>` : d}</td>`;
-    if (col === 6 && d !== days) html += "</tr><tr>";
-  }
-  html += "</tr></tbody></table>";
-  $("#calendar").innerHTML = html;
-}
-
-function renderCountdown() {
-  const w = CONFIG.wedding;
-  const target = new Date(w.year, w.month - 1, w.day, w.hour, w.minute);
-  const box = $("#countdown");
-  function tick() {
-    const diff = target - new Date();
-    if (diff <= 0) { box.innerHTML = `<p class="msg">오늘은 저희의 결혼식입니다</p>`; return; }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    const cell = (n, l) => `<div class="cd"><div class="num">${n}</div><div class="lbl">${l}</div></div>`;
-    box.innerHTML = cell(d, "DAYS") + cell(h, "HOUR") + cell(m, "MIN") + cell(s, "SEC")
-      + `<p class="msg">예식까지 ${d}일 남았습니다</p>`;
-  }
-  tick();
-  setInterval(tick, 1000);
+  $("#date-place").innerHTML = `${CONFIG.venue.name}<span>${CONFIG.venue.address}</span>`;
 }
 
 /* ---------- 오시는 길 ---------- */
