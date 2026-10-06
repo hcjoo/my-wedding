@@ -20,16 +20,23 @@ const CONFIG = {
     name: "아벤티움 웨딩홀",
     nameEn: "AVENTIUM, SEOUL",
     address: "서울 중구 청파로 464 브라운스톤서울 3층",
-    phone: "02-313-2480",   // 예식장 대표번호
     mapQuery: "서울 중구 청파로 464 브라운스톤서울",
     embedQuery: "서울 중구 청파로 464 브라운스톤서울",
     transport: [
-      { head: "지하철", body:
-        "2·5호선 충정로역 4번 출구 — 도보 3분\n출구 방향으로 70m 직진 후 횡단보도 건너편 브라운스톤서울 3층\n\n1·4호선 서울역 15번 출구(공항철도역) — 도보 10분\n'서울역 서부광장' 방향으로 나오신 후 한국경제신문사 방향 이동, 맞은편" },
-      { head: "버스", body:
-        "한국경제신문사 (02516, 02109)\n마을 서대문06 / 간선 370, 603\n지선 7011, 7013A, 7013B, 7017 / 공항 6015\n\n경찰청·동북아역사재단 (13039)\n간선 103, 150, 701, 704, 708, 709, 742, 750A, 750B, 752\n지선 7021, 7024, M7154 / 공항 6005\n\n서울역서부 (02105)\n간선 173, 261, 262, 463, 503, 604 / 지선 7021, 7024\n\n종근당·충정로역 (02107)\n간선 172, 472, 603, N51, N62, N73" },
-      { head: "주차 (내비게이션 검색)", body:
-        "본관주차장 — 브라운스톤서울 (중구 청파로 464)\n별관주차장 — 서소문공원 (중구 칠패로 5)" },
+      { head: "지하철", items: [
+        { line: "2·5호선 충정로역 4번 출구", note: "도보 3분 · 출구 방향으로 70m 직진 후 횡단보도 건너편" },
+        { line: "1·4호선 서울역 15번 출구 (공항철도)", note: "도보 10분 · 서부광장 방향으로 나와 한국경제신문사 맞은편" },
+      ] },
+      { head: "버스", items: [
+        { line: "한국경제신문사", note: "마을 서대문06 · 간선 370, 603 · 지선 7011, 7013A, 7013B, 7017 · 공항 6015" },
+        { line: "경찰청 · 동북아역사재단", note: "간선 103, 150, 701, 704, 708, 709, 742, 750A, 750B, 752 · 지선 7021, 7024, M7154 · 공항 6005" },
+        { line: "서울역 서부", note: "간선 173, 261, 262, 463, 503, 604 · 지선 7021, 7024" },
+        { line: "종근당 · 충정로역", note: "간선 172, 472, 603, N51, N62, N73" },
+      ] },
+      { head: "주차", items: [
+        { line: "본관 — 브라운스톤서울", note: "중구 청파로 464" },
+        { line: "별관 — 서소문공원", note: "중구 칠패로 5" },
+      ] },
     ],
   },
 
@@ -125,15 +132,21 @@ function renderLocation() {
   const v = CONFIG.venue;
   $("#loc-name").textContent = v.name;
   $("#loc-addr").textContent = v.address;
-  $("#loc-tel").innerHTML = `예식장 문의 <a href="tel:${v.phone}">${v.phone}</a>`;
   $("#map-frame").src = `https://www.google.com/maps?q=${encodeURIComponent(v.embedQuery)}&output=embed`;
   const q = encodeURIComponent(v.mapQuery);
   $("#map-buttons").innerHTML = `
     <a href="https://map.naver.com/v5/search/${q}" target="_blank" rel="noopener">네이버 지도</a>
     <a href="https://map.kakao.com/?q=${q}" target="_blank" rel="noopener">카카오맵</a>
     <a href="https://www.google.com/maps/search/${q}" target="_blank" rel="noopener">구글 지도</a>`;
-  $("#transport").innerHTML = v.transport.map((t) =>
-    `<div><div class="t-head">${t.head}</div><div class="t-body">${escapeHtml(t.body)}</div></div>`).join("");
+  $("#transport").innerHTML = v.transport.map((t) => `
+    <div class="t-group">
+      <div class="t-head">${t.head}</div>
+      ${t.items.map((i) => `
+        <div class="t-item">
+          <div class="t-line">${escapeHtml(i.line)}</div>
+          <div class="t-note">${escapeHtml(i.note)}</div>
+        </div>`).join("")}
+    </div>`).join("");
 }
 
 /* ---------- 계좌 ---------- */
