@@ -70,6 +70,8 @@ const CONFIG = {
     ],
     brideSide: [
       { label: "신부", bank: "카카오뱅크", number: "3333-04-2972062", holder: "김하정" },
+      { label: "신부 아버지", bank: "카카오뱅크", number: "3333-07-2382331", holder: "김형진" },
+      { label: "신부 어머니", bank: "카카오뱅크", number: "3333-07-3591032", holder: "허정화" },
     ],
   },
 };
