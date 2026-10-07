@@ -41,7 +41,7 @@ img { display: block; }
 }
 .hero__names span { writing-mode: vertical-rl; text-orientation: upright; letter-spacing: .3em; }
 .hero__photo { width: 62%; margin: 0 auto; }
-.hero__photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(1); }
+.hero__photo img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
 .hero__lead {
   writing-mode: vertical-rl; text-orientation: upright;
   margin: 44px auto 0; height: 132px;
