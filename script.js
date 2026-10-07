@@ -66,6 +66,7 @@ const CONFIG = {
   accounts: {
     groomSide: [
       { label: "신랑", bank: "신한은행", number: "110-472-002396", holder: "주환철" },
+      { label: "신랑 아버지", bank: "농협", number: "467-12-387866", holder: "주길화" },
     ],
     brideSide: [
       { label: "신부", bank: "카카오뱅크", number: "3333-04-2972062", holder: "김하정" },
